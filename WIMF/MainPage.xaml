@@ -34,14 +34,44 @@
                 Text="Click me" 
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />-->            
+                HorizontalOptions="Fill" />-->
 
-            
-            <Entry Placeholder="Name" Text="{Binding Name}" />
+            <Grid ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />          <!-- Name Entry takes all available space -->
+                    <ColumnDefinition Width="Auto" />       <!-- DateAdded -->
+                    <ColumnDefinition Width="Auto" />       <!-- BestBeforeDate -->
+                </Grid.ColumnDefinitions>
+
+                <VerticalStackLayout Grid.Column="0" Spacing="2">
+                    <Label Text="Food Name" FontAttributes="Bold" FontSize="12"/>
+                    <Entry Placeholder="Name" Text="{Binding Name}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" Spacing="2">
+                    <Label Text="Date Added" FontAttributes="Bold" FontSize="12"/>
+                    <DatePicker Date="{Binding DateAdded}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="2" Spacing="2">
+                    <Label Text="Best Before" FontAttributes="Bold" FontSize="12"/>
+                    <DatePicker Date="{Binding BestBeforeDate}" />
+                </VerticalStackLayout>
+            </Grid>
+
             <Editor Placeholder="Description" Text="{Binding Description}" AutoSize="TextChanges" HeightRequest="100" />
-            <DatePicker Date="{Binding DateAdded}" />
 
 
+
+            <Button
+                x:Name="AddItemBtn"
+                Text="Add Item" 
+                SemanticProperties.Hint="Adds and item to your freezer."
+                Command="{Binding AddFreezerItemCommand}"
+                HorizontalOptions="Fill" />
+
+
+        
             <CollectionView ItemsSource="{Binding FreezerItems}" HeightRequest="300">
                 <CollectionView.ItemsLayout>
                     <!-- 2 columns, vertical scrolling -->
@@ -58,13 +88,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
-            <Button
-                x:Name="AddItemBtn"
-                Text="Add Item" 
-                SemanticProperties.Hint="Adds and item to your freezer."
-                Command="{Binding AddFreezerItemCommand}"
-                HorizontalOptions="Fill" />
 
         </VerticalStackLayout>
     </ScrollView>

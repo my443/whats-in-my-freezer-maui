@@ -12,6 +12,7 @@ namespace WIMF.ViewModels
         private string name;
         private string description;
         private DateTime dateAdded = DateTime.Now;
+        private DateTime bestBeforeDate = DateTime.Now.AddDays(90);
         public ObservableCollection<FreezerItem> FreezerItems { get; set; }
         public ICommand AddFreezerItemCommand{ get; }
 
@@ -31,6 +32,12 @@ namespace WIMF.ViewModels
         {
             get => dateAdded;
             set { dateAdded = value; OnPropertyChanged(); }
+        }
+
+        public DateTime BestBeforeDate
+        {
+            get => bestBeforeDate;
+            set { bestBeforeDate = value; OnPropertyChanged(); }
         }
 
         public FreezerItemViewModel()
