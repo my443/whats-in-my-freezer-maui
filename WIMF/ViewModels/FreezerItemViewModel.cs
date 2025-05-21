@@ -57,10 +57,11 @@ namespace WIMF.ViewModels
             if (string.IsNullOrWhiteSpace(Name))
                 return;
 
-            FreezerItems.Add(new FreezerItem { Id = 1, Name = Name, Description = Description, DateAdded = DateAdded });
+            FreezerItems.Add(new FreezerItem { Id = 1, Name = Name, Description = Description, DateAdded = DateAdded, BestBeforeDate = BestBeforeDate });
             Name = string.Empty;
             Description = string.Empty;
             DateAdded = DateTime.Now;
+            BestBeforeDate = DateTime.Now.AddDays(90);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
